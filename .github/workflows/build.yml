@@ -1,0 +1,16 @@
+name: Build
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: Building
+        run: ./build.sh
+      - name: Upload
+        uses: actions/upload-artifact@v3
+        with:
+          name: ISO
+          path: /build/os.iso
